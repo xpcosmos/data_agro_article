@@ -1,0 +1,34 @@
+\thispagestyle{empty}
+
+\section{Material e métodos}
+
+\subsection{Fonte de dados}
+As pesquisas usarão de fontes de dados públicas para a criação de banco de dados para análise das variáveis e relacioná-las sob a perspectiva
+econômica, social e ambiental, a saber: IBGE (Instituto Brasileiro de Geografia e Estatística), SIDRA-IBGE (Sistema IBGE de Recuperação Automática),
+IPEADATA (Instituto de Pesquisa Econômica Aplicada), Ministério da Economia, PNAD (Pesquisa Nacional por Amostra de Domicílios), INPE (Instituto
+Nacional de Pesquisas Espaciais), MapBiomas (Projeto de Mapeamento Anual do Uso e Cobertura da Terra no Brasil). Outras fontes de dados também
+poderão ser integradas as análises.
+
+\subsection{Processamento de dados}
+
+O processamento dos dados e análise ocorreram na plataforma de mineração de dados Orange, através da linguagem de programação Python e suas
+bibliotecas de aprendizado de máquina e ciência de dados, e na plataforma gratuita Google Earth Engine para a investigação de imagens de satélite.
+Buscar-se-a dados públicos com o objetivo de predizer as tendências de crescimento, estabilização ou redução, a saber: em hectares, Floresta,
+Pastagem, Soja, Lavouras Temporárias (junção de milho, mandioca, arroz e abacaxi e outras lavouras temporárias); em valores quantitativos,
+Estabelecimentos agropecuários e Empregos agropecuários. Os dados coletados serão dados anuais, num intervalo entre 1985 e 2020, somando 36 anos
+de análise.
+
+Inicialmente será necessário tratar e integrar os dados das diferentes bases formando um conjunto de dados únicos. Posteriormente serão criadas
+instâncias intermediárias formando um novo conjunto de dados com base semestral, em vez de anual, visando aumentar a quantidade de dados para 72 instâncias com a criação dos registros sintéticos. Após a implementação da nova estrutura de dados, técnicas de interpolação linear, que imputam valores ausentes espaçados e lineares entre os dois pontos de dados poderão ser utilizados com a finalidade de tratar os registros faltantes com a menor taxa de perca de informação possível.
+
+Os métodos explorados para realizar a projeção serão: ARIMA (modelo estatístico), BlockRNNModel, LSTM, GRU, NBEATSModel, TCNModel,
+TransformerModel (modelos baseados em redes neurais artificiais e deep learning) e modelos linha de base (modelos ingénuos). É importante ressaltar que apesar da utilização de modelos baseados em aprendizado profundo, é esperado que esses modelos apresentem um desempenho inferior ao que seria esperado, visto que a quantidade de dados disponíveis são insuficientes para justificar um possível bom desempenho do modelo, entendendo que esse comportamento só poderia ser explicado pelo aprendizado por chance, (boa acurácia do modelo por chance aleatória estatística) implicando que o resultado não necessariamente signifique uma boa generalização do modelo. 
+
+Para a escolha dos parâmetros dos modelos utilizar-se-á GRIDs de parâmetros, executando o modelo e realizando uma avaliação através de métricas de erro. Essa avaliação pode ser feita por métodos de cross-validation de séries temporais e pelo método de pontuação ordenada de cada conjunto de
+parâmetros que tiveram os melhores valores de avaliação.
+
+\subsection{Projeções e interpretação dos dados gerados}
+Após encontrar os melhores conjuntos de parâmetros para um determinado alvo, executar-se-á os modelos que tiveram melhor desempenho gerando
+projeções, que no que lhe concerne, podem servir de base para gerar os gráficos e análise de tendências para cada um dos alvos determinados.
+Os gráficos serão validados por especialistas e interpretados pela equipe do projeto com foco em uma visão das tendências de crescimento, queda ou
+estabilização, que por sua vez formarão os relatórios técnicos do framework.
