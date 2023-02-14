@@ -1,13 +1,10 @@
-\thispagestyle{empty}
+
 
 \section{Material e métodos}
 
 \subsection{Fonte de dados}
 As pesquisas usarão de fontes de dados públicas para a criação de banco de dados para análise das variáveis e relacioná-las sob a perspectiva
-econômica, social e ambiental, a saber: IBGE (Instituto Brasileiro de Geografia e Estatística), SIDRA-IBGE (Sistema IBGE de Recuperação Automática),
-IPEADATA (Instituto de Pesquisa Econômica Aplicada), Ministério da Economia, PNAD (Pesquisa Nacional por Amostra de Domicílios), INPE (Instituto
-Nacional de Pesquisas Espaciais), MapBiomas (Projeto de Mapeamento Anual do Uso e Cobertura da Terra no Brasil). Outras fontes de dados também
-poderão ser integradas as análises.
+econômica, social e ambiental, a saber: IBGE (Instituto Brasileiro de Geografia e Estatística), SIDRA-IBGE (Sistema IBGE de Recuperação Automática), Mapbiomas Brasil.
 
 \subsection{Processamento de dados}
 
@@ -24,7 +21,7 @@ instâncias intermediárias formando um novo conjunto de dados com base semestra
 Os métodos explorados para realizar a projeção serão: ARIMA (modelo estatístico), BlockRNNModel, LSTM, GRU, NBEATSModel, TCNModel,
 TransformerModel (modelos baseados em redes neurais artificiais e deep learning) e modelos linha de base (modelos ingénuos). É importante ressaltar que apesar da utilização de modelos baseados em aprendizado profundo, é esperado que esses modelos apresentem um desempenho inferior ao que seria esperado, visto que a quantidade de dados disponíveis são insuficientes para justificar um possível bom desempenho do modelo, entendendo que esse comportamento só poderia ser explicado pelo aprendizado por chance, (boa acurácia do modelo por chance aleatória estatística) implicando que o resultado não necessariamente signifique uma boa generalização do modelo. 
 
-Para a escolha dos parâmetros dos modelos utilizar-se-á inicialmente o algorítimo RandomSearch para definir quais os intervalos de parâmetros pode ser encontrado um ótimo local e após isso será feita a utilização do também algoritmo de otimização, GridSearch, para aprofundar a análise do ótimo local com o intuito de otimizar ainda mais o modelo. A implementação do método de otimização descrito foi desenhado considerando que o RandomSearch apresenta um desempenho maior porém não aprofunda todas as combinações possíveis de hiper-parâmetros, enquanto o GridSearch apresenta um custo computacional exponencial maior ao decorrer que a área de parâmetros aumenta, mas em compensação irá avaliar todas as combinações possíveis. O processo de otimização que será considerado tenta equilibrar os trade-off ao mesmo tempo que tenta explorar a vantagem de utilização de cada algoritmo. A mensuração do desempenho do modelo em face a aplicação de técnicas de otimização deve ser através de validação cruzada, dado que a otimização pode implicar no sobre-ajuste dos dados de teste, significando uma má generalização do modelo.
+Para a escolha dos parâmetros dos modelos utilizar-se-á inicialmente o algorítimo RandomSearch para definir quais os intervalos de parâmetros pode ser encontrado um ótimo local e após isso será feita a utilização do também algoritmo de otimização, GridSearch, para aprofundar a análise do ótimo local com o intuito de otimizar ainda mais o modelo. A implementação do método de otimização descrito foi desenhado considerando que o RandomSearch apresenta um desempenho maior porém não aprofunda todas as combinações possíveis de hiper-parâmetros, enquanto o GridSearch apresenta um custo computacional exponencialmente maior ao decorrer que a área de parâmetros aumenta, mas em compensação irá avaliar todas as combinações possíveis. O processo de otimização que será considerado tenta equilibrar os trade-off ao mesmo tempo que tenta explorar a vantagem de utilização de cada algoritmo. A mensuração do desempenho do modelo em face a aplicação de técnicas de otimização deve ser através de validação cruzada, dado que a otimização pode implicar no sobre-ajuste dos dados de teste, significando uma má generalização do modelo.
 
 \subsection{Projeções e interpretação dos dados gerados}
 
