@@ -2,26 +2,66 @@
 
 \section{Material e métodos}
 
+
 \subsection{Fonte de dados}
+
 As pesquisas usarão de fontes de dados públicas para a criação de banco de dados para análise das variáveis e relacioná-las sob a perspectiva
-econômica, social e ambiental, a saber: IBGE (Instituto Brasileiro de Geografia e Estatística), SIDRA-IBGE (Sistema IBGE de Recuperação Automática), Mapbiomas Brasil.
+econômica, social e ambiental, a saber: IBGE (Instituto Brasileiro de Geografia e Estatística), SIDRA-IBGE (Sistema IBGE de Recuperação Automática), Mapbiomas Brasil. É possível verificar as variáveis estudadas nas tabelas \ref{tab:produto_analisados-lavtemp} e \ref{tab:produto_analisados-pecuaria}.
 
-\subsection{Processamento de dados}
+\begin{center}
+    \begin{table}[!htb]
+        \centering
+        \begin{tabular}{|p{0.8\textwidth}|}
+        \hline
+        \textbf{Produtos das Lavouras temporárias} \\ \hline
+           Abacaxi \\ 
+            \hline
+           Batata-doce \\ 
+            \hline
+           Cebola \\ 
+            \hline
+           Feijão \\
+            \hline
+           Melancia \\
+            \hline
+           Milho \\
+            \hline
+           Tomate \\
+            \hline  
+            \end{tabular}
+        \caption{Produtos analisados das produções das lavouras temporárias}
+        \label{tab:produto_analisados-lavtemp}
+    \end{table}
+\end{center}
 
-O processamento dos dados e análise ocorreram na plataforma de mineração de dados Orange, através da linguagem de programação Python e suas
-bibliotecas de aprendizado de máquina e ciência de dados, e na plataforma gratuita Google Earth Engine para a investigação de imagens de satélite.
-Buscar-se-a dados públicos com o objetivo de predizer as tendências de crescimento, estabilização ou redução, a saber: em hectares, Floresta,
-Pastagem, Soja, Lavouras Temporárias (junção de milho, mandioca, arroz e abacaxi e outras lavouras temporárias); em valores quantitativos,
-Estabelecimentos agropecuários e Empregos agropecuários. Os dados coletados serão dados anuais, num intervalo entre 1985 e 2020, somando 36 anos
+
+\begin{center}
+    \begin{table}[!htb]
+        \centering
+        \begin{tabular}{|p{0.8\textwidth}|}
+        \hline
+        \textbf{Produtos da Agropecuária} \\ 
+            \hline  
+            Bovino \\
+            \hline  
+            Equino \\
+            \hline  
+            Caprino \\
+            \hline  
+            Ovino \\
+            \hline  
+            \end{tabular}
+        \caption{Produtos analisados das produções da pecuária}
+        \label{tab:produto_analisados-pecuaria}
+    \end{table}
+\end{center}
+
+O processamento dos dados e análise ocorreram na plataforma de mineração de dados Orange, através da linguagem de programação Python e suas bibliotecas de aprendizado de máquina e ciência de dados, e na plataforma gratuita Google Earth Engine para a investigação de imagens de satélite. Buscar-se-a dados públicos com o objetivo de predizer as tendências de crescimento, estabilização ou redução, a saber: em hectares,
+Pastagem, Soja, Lavouras Temporárias (junção de milho e abacaxi e outras lavouras temporárias); em valores quantitativos. Os dados coletados serão dados anuais, num intervalo entre 1985 e 2021, somando 36 anos
 de análise.
 
-Inicialmente será necessário tratar e integrar os dados das diferentes bases formando um conjunto de dados únicos. Posteriormente serão criadas
-instâncias intermediárias formando um novo conjunto de dados com base semestral, em vez de anual, visando aumentar a quantidade de dados para 72 instâncias com a criação dos registros sintéticos. Após a implementação da nova estrutura de dados, técnicas de interpolação linear, que imputam valores ausentes espaçados e lineares entre os dois pontos de dados poderão ser utilizados com a finalidade de tratar os registros faltantes na tentativa de obtenção da menor taxa de perca de informação possível.
+Inicialmente foi necessário tratar e integrar os dados das diferentes bases formando um conjunto de dados únicos. Após isso, os dados foram modelados para se adequarem a finalidade requerida. Além da integração das duas bases, foi incluído também detalhamentos geográficos aos dados, como regiões intermediárias e imediatas.
 
-Os métodos explorados para realizar a projeção serão: ARIMA (modelo estatístico), BlockRNNModel, LSTM, GRU, NBEATSModel, TCNModel,
-TransformerModel (modelos baseados em redes neurais artificiais e deep learning) e modelos linha de base (modelos ingénuos). É importante ressaltar que apesar da utilização de modelos baseados em aprendizado profundo, é esperado que esses modelos apresentem um desempenho inferior ao que seria esperado, visto que a quantidade de dados disponíveis são insuficientes para justificar um possível bom desempenho do modelo, entendendo que esse comportamento só poderia ser explicado pelo aprendizado por chance, (boa acurácia do modelo por chance aleatória estatística) implicando que o resultado não necessariamente signifique uma boa generalização do modelo. 
-
-Para a escolha dos parâmetros dos modelos utilizar-se-á inicialmente o algorítimo RandomSearch para definir quais os intervalos de parâmetros pode ser encontrado um ótimo local e após isso será feita a utilização do também algoritmo de otimização, GridSearch, para aprofundar a análise do ótimo local com o intuito de otimizar ainda mais o modelo. A implementação do método de otimização descrito foi desenhado considerando que o RandomSearch apresenta um desempenho maior porém não aprofunda todas as combinações possíveis de hiper-parâmetros, enquanto o GridSearch apresenta um custo computacional exponencialmente maior ao decorrer que a área de parâmetros aumenta, mas em compensação irá avaliar todas as combinações possíveis. O processo de otimização que será considerado tenta equilibrar os trade-off ao mesmo tempo que tenta explorar a vantagem de utilização de cada algoritmo. A mensuração do desempenho do modelo em face a aplicação de técnicas de otimização deve ser através de validação cruzada, dado que a otimização pode implicar no sobre-ajuste dos dados de teste, significando uma má generalização do modelo.
 
 % --------------------
 
@@ -32,21 +72,38 @@ O MapBiomas é uma iniciativa sem fins lucrativos do Sistema de Estimativas de E
 
 A sua utilização no presente projeto se dá pela possibilidade de adquirição dos dados de forma mais atualizada, veloz e segundo os próprios integrantes do projeto, mais barata, em comparação com outros métodos que almejam a mesma finalidade. Os dados de cobertura de terra do MapBiomas foram extraídos em sua totalidade, entretanto, para finalidade de alinhamento das informações dispostas com o objetivo do projeto, os dados foram filtrados para incluir somente os registros do estado do Pará. 
 
-Após a limpeza, foi contabilizado registros de 143 diferentes municípios do estado do Pará. Um dos atributos disponibilizados na base é referente ao bioma, entretanto, por se limitar apenas a duas categorias distintas, foi desconsiderada. As informações preservadas se reservaram ao município, identificador de classe, nome da classe e ano do registro. As classes de interesse foram mantidas e as demais foram descartadas, sendo classes de interesse: Formação florestal, pastagem, grãos de soja, outras lavouras temporárias e outras lavouras permanentes. Os dados foram então armazenados e reservados para uma posterior integração com os demais dados.
+Após a limpeza, foi contabilizado registros de 143 diferentes municípios do estado do Pará. Um dos atributos disponibilizados na base é referente ao bioma, entretanto, por se limitar apenas a duas categorias distintas, foi desconsiderada. As informações preservadas se reservaram ao município, identificador de classe, nome da classe e ano do registro. As classes de interesse foram mantidas e as demais foram descartadas, sendo classes de interesse: Formação florestal, pastagem, grãos de soja e outras lavouras temporárias. Os dados foram então armazenados e reservados para uma posterior integração com os demais dados.
 
 \subsubsection{Dados do IBGE}
 
 % O que
-A SIDRA é um banco de dados agregados que disponibiliza séries temporais de diversas áreas, como: Administração pública, agroindústria, economia, economia agrícola e estatística. As tabelas extraídas foram: Área plantada, área colhida, quantidade produzida, rendimento médio e valor da produção das lavouras temporárias; Área plantada, área colhida, quantidade produzida, rendimento médio e valor da produção das lavouras permanentes; Quantidade produzida e valor da produção na silvicultura, por tipo de produto da silvicultura; Efetivo dos rebanhos, por tipo de rebanho. 
+
+O SIDRA (Sistema IBGE De Recuperação Automática) é um banco de dados agregados que disponibiliza séries temporais de diversas áreas, como: Administração pública, agroindústria, economia, economia agrícola e estatística.
 % Por que?
-O Sistema IBGE De Recuperação Automática é uma ferramenta que possibilita a recuperação de dados diretamente do banco de dados do IBGE. Dentro do sistema, diversas tabelas são disponibilizadas com as mais diferentes finalidades. Sua maior relevância para o projeto é em virtude da confiabilidade dos dados, considerando que, são fornecidos diretamente pelo maior órgão oficial de estatística do Brasil.
+
+Essa ferramenta possibilita a recuperação de dados diretamente do sistemas de dados do IBGE. Dentro do sistema, diversas tabelas são disponibilizadas com as mais diferentes finalidades. As tabelas extraídas foram: Área plantada, área colhida, quantidade produzida, rendimento médio e valor da produção das lavouras temporárias; Efetivo dos rebanhos, por tipo de rebanho. Sua maior relevância para o projeto é em virtude da confiabilidade dos dados, considerando que são fornecidos diretamente pelo maior órgão oficial de estatística do Brasil.
 % Como?
+
 Os dados podem ser adquiridos através de API. Os registros possuíam algumas características que ocasionariam erros, visto isso, os dados passaram por transformações e limpezas que garantiram a qualidade e coerência dos dados. Após essa limpeza, as informações foram mescladas com os dados de cobertura da terra e realizado uma cuidadosa análise. 
 
-\subsection{Projeções e interpretação dos dados gerados}
+\begin{table}[hbt!]
+    \centering
+    \resizebox{\textwidth}{!}{\begin{tabular}{lrlrrllrlrlrlrr}
+\toprule
+                  cidade &  cod\_cidade &  nome\_rgi &  cod\_rgi &  cod\_rgint & nome\_rgint &                    tipo\_producao &  cod\_variavel &             variavel &  cod\_produto &             produto &  cod\_metrica &   metrica &  valor &    ano \\
+\midrule
+    Santa Izabel do Pará &     1506500 &     Belém &   150001 &       1501 &      Belém & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2694.0 &         Batata-doce &       1017.0 & Toneladas &    0.0 & 1987.0 \\
+     Santana do Araguaia &     1506708 &  Redenção &   150012 &       1504 &   Redenção & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2706.0 &       Malva (fibra) &       1017.0 & Toneladas &    0.0 & 2001.0 \\
+       Concórdia do Pará &     1502756 &     Belém &   150001 &       1501 &      Belém & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2706.0 &       Malva (fibra) &       1017.0 & Toneladas &  120.0 & 1994.0 \\
+Brejo Grande do Araguaia &     1501758 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         109.0 &        Área plantada &       2714.0 &     Sorgo (em grão) &       1006.0 &  Hectares &    0.0 & 2012.0 \\
+São Domingos do Araguaia &     1507151 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2709.0 &            Melancia &       1017.0 & Toneladas &    0.0 & 2018.0 \\
+                   Bagre &     1501105 &    Breves &   150020 &       1507 &     Breves & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2691.0 & Amendoim (em casca) &       1017.0 & Toneladas &    0.0 & 1981.0 \\
+                 Piçarra &     1505635 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         216.0 &         Área colhida &       2706.0 &       Malva (fibra) &       1006.0 &  Hectares &    0.0 & 1982.0 \\
 
-Após encontrar os melhores conjuntos de parâmetros para um determinado alvo, executar-se-á os modelos que tiveram melhor desempenho gerando
-projeções, que no que lhe concerne, podem servir de base para gerar os gráficos e análise de tendências para cada um dos alvos determinados.
-Os gráficos serão validados por especialistas e interpretados pela equipe do projeto com foco em uma visão das tendências de crescimento, queda ou
-estabilização, que por sua vez formarão os relatórios técnicos do framework. Visando o aprofundamento das análise, foi também utilizado os dados, referentes as regiões geográficas e seus detalhamentos como, regiões intermediárias e imediatas, conforme é adotado pelo IBGE desde 2017. 
+\bottomrule
+
+\end{tabular}}
+    \caption{Amostra com dez registros aleatórios extraídos da tabela} 
+    \label{tab:sample10}
+\end{table}
 
