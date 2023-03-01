@@ -56,11 +56,35 @@ econômica, social e ambiental, a saber: IBGE (Instituto Brasileiro de Geografia
     \end{table}
 \end{center}
 
+
+\subsection{Processamento de dados}
+
 O processamento dos dados e análise ocorreram na plataforma de mineração de dados Orange, através da linguagem de programação Python e suas bibliotecas de aprendizado de máquina e ciência de dados, e na plataforma gratuita Google Earth Engine para a investigação de imagens de satélite. Buscar-se-a dados públicos com o objetivo de predizer as tendências de crescimento, estabilização ou redução, a saber: em hectares,
-Pastagem, Soja, Lavouras Temporárias (junção de milho e abacaxi e outras lavouras temporárias); em valores quantitativos. Os dados coletados serão dados anuais, num intervalo entre 1985 e 2021, somando 36 anos
-de análise.
+Pastagem, Soja, Lavouras Temporárias (junção de milho e abacaxi e outras lavouras temporárias); em valores quantitativos. Os dados coletados serão dados anuais, num intervalo entre 1985 e 2021, somando 36 anos de análise. É possível ver um exemplo dos dados resultantes na tabela \ref{tab:sample10}
+
+\begin{table}[hbt!]
+    \centering
+    \resizebox{\textwidth}{!}{\begin{tabular}{lrlrrllrlrlrlrr}
+\toprule
+                  cidade &  cod\_cidade &  nome\_rgi &  cod\_rgi &  cod\_rgint & nome\_rgint &                    tipo\_producao &  cod\_variavel &             variavel &  cod\_produto &             produto &  cod\_metrica &   metrica &  valor &    ano \\
+\midrule
+    Santa Izabel do Pará &     1506500 &     Belém &   150001 &       1501 &      Belém & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2694.0 &         Batata-doce &       1017.0 & Toneladas &    0.0 & 1987.0 \\
+     Santana do Araguaia &     1506708 &  Redenção &   150012 &       1504 &   Redenção & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2706.0 &       Malva (fibra) &       1017.0 & Toneladas &    0.0 & 2001.0 \\
+       Concórdia do Pará &     1502756 &     Belém &   150001 &       1501 &      Belém & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2706.0 &       Malva (fibra) &       1017.0 & Toneladas &  120.0 & 1994.0 \\
+Brejo Grande do Araguaia &     1501758 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         109.0 &        Área plantada &       2714.0 &     Sorgo (em grão) &       1006.0 &  Hectares &    0.0 & 2012.0 \\
+São Domingos do Araguaia &     1507151 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2709.0 &            Melancia &       1017.0 & Toneladas &    0.0 & 2018.0 \\
+                   Bagre &     1501105 &    Breves &   150020 &       1507 &     Breves & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2691.0 & Amendoim (em casca) &       1017.0 & Toneladas &    0.0 & 1981.0 \\
+                 Piçarra &     1505635 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         216.0 &         Área colhida &       2706.0 &       Malva (fibra) &       1006.0 &  Hectares &    0.0 & 1982.0 \\
+
+\bottomrule
+
+\end{tabular}}
+    \caption{Amostra com dez registros aleatórios extraídos da tabela} 
+    \label{tab:sample10}
+\end{table}
 
 Inicialmente foi necessário tratar e integrar os dados das diferentes bases formando um conjunto de dados únicos. Após isso, os dados foram modelados para se adequarem a finalidade requerida. Além da integração das duas bases, foi incluído também detalhamentos geográficos aos dados, como regiões intermediárias e imediatas.
+
 
 
 % --------------------
@@ -86,24 +110,4 @@ Essa ferramenta possibilita a recuperação de dados diretamente do sistemas de 
 
 Os dados podem ser adquiridos através de API. Os registros possuíam algumas características que ocasionariam erros, visto isso, os dados passaram por transformações e limpezas que garantiram a qualidade e coerência dos dados. Após essa limpeza, as informações foram mescladas com os dados de cobertura da terra e realizado uma cuidadosa análise. 
 
-\begin{table}[hbt!]
-    \centering
-    \resizebox{\textwidth}{!}{\begin{tabular}{lrlrrllrlrlrlrr}
-\toprule
-                  cidade &  cod\_cidade &  nome\_rgi &  cod\_rgi &  cod\_rgint & nome\_rgint &                    tipo\_producao &  cod\_variavel &             variavel &  cod\_produto &             produto &  cod\_metrica &   metrica &  valor &    ano \\
-\midrule
-    Santa Izabel do Pará &     1506500 &     Belém &   150001 &       1501 &      Belém & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2694.0 &         Batata-doce &       1017.0 & Toneladas &    0.0 & 1987.0 \\
-     Santana do Araguaia &     1506708 &  Redenção &   150012 &       1504 &   Redenção & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2706.0 &       Malva (fibra) &       1017.0 & Toneladas &    0.0 & 2001.0 \\
-       Concórdia do Pará &     1502756 &     Belém &   150001 &       1501 &      Belém & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2706.0 &       Malva (fibra) &       1017.0 & Toneladas &  120.0 & 1994.0 \\
-Brejo Grande do Araguaia &     1501758 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         109.0 &        Área plantada &       2714.0 &     Sorgo (em grão) &       1006.0 &  Hectares &    0.0 & 2012.0 \\
-São Domingos do Araguaia &     1507151 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2709.0 &            Melancia &       1017.0 & Toneladas &    0.0 & 2018.0 \\
-                   Bagre &     1501105 &    Breves &   150020 &       1507 &     Breves & Produto das lavouras temporárias &         214.0 & Quantidade produzida &       2691.0 & Amendoim (em casca) &       1017.0 & Toneladas &    0.0 & 1981.0 \\
-                 Piçarra &     1505635 &    Marabá &   150009 &       1503 &     Marabá & Produto das lavouras temporárias &         216.0 &         Área colhida &       2706.0 &       Malva (fibra) &       1006.0 &  Hectares &    0.0 & 1982.0 \\
-
-\bottomrule
-
-\end{tabular}}
-    \caption{Amostra com dez registros aleatórios extraídos da tabela} 
-    \label{tab:sample10}
-\end{table}
 
